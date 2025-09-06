@@ -13,7 +13,11 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+interface NavbarProps {
+  onNavigate?: (view: "home" | "search" | "profile" | "create") => void;
+}
+
+export function Navbar({ onNavigate }: NavbarProps) {
   const [isConnected, setIsConnected] = useState(false);
   const [userLevel] = useState(7);
   const [userXP] = useState(2450);
@@ -32,12 +36,12 @@ export function Navbar() {
           
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-6 ml-8">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={() => onNavigate?.("search")} className="text-muted-foreground hover:text-foreground transition-colors">
               Discover
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button onClick={() => onNavigate?.("create")} className="text-muted-foreground hover:text-foreground transition-colors">
               Start Project
-            </a>
+            </button>
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center space-x-1">
               <TrendingUp className="w-4 h-4" />
               <span>Trending</span>
@@ -114,7 +118,7 @@ export function Navbar() {
 
           {/* User Profile */}
           {isConnected && (
-            <Button variant="glassmorphism" size="icon">
+            <Button variant="glassmorphism" size="icon" onClick={() => onNavigate?.("profile")}>
               <User className="w-4 h-4" />
             </Button>
           )}

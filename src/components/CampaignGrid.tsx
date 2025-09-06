@@ -19,7 +19,11 @@ import {
   RefreshCw
 } from "lucide-react";
 
-export function CampaignGrid() {
+interface CampaignGridProps {
+  onCampaignSelect?: (campaignId: string) => void;
+}
+
+export function CampaignGrid({ onCampaignSelect }: CampaignGridProps) {
   const [filter, setFilter] = useState("all");
   const [sortBy, setSortBy] = useState("trending");
   const [campaigns, setCampaigns] = useState([

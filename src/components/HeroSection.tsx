@@ -14,7 +14,11 @@ import {
   Target
 } from "lucide-react";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onNavigate?: (view: "home" | "search" | "profile" | "create") => void;
+}
+
+export function HeroSection({ onNavigate }: HeroSectionProps) {
   const [stats, setStats] = useState({
     totalFunded: 47283649,
     totalProjects: 15847,
